@@ -1,30 +1,33 @@
 class UsersController < ApplicationController
 
     def create
-        @user = User.create(user_params)
+        user = User.create(user_params)
         if user.valid?
             render json: authentication_json(user.id)
-          else
+        else
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 
     def login
-        @user = User.find_by(username: params[:username])
-        @user.password = params[:password]
+        user = User.find_by(username: params[:username])
+        user.password = params[:password]
+    end
+
+    def show
+        user_id = params[:id]
+        if logged_in_user_id == user_id.to_i
+            user = User.find(params[:id])
+            render json: user
+        else
+            render json: { go_away: true }, status: :unauthorized
+        end
     end
 
     private
     
     def user_params
-        params.require(:user).permit(
-            :username,
-            :password,
-            :bio,
-            :img_url,
-        )
+        params.permit(:username, :password, :bio, :img_url)
     end
-    
-
     
 end
