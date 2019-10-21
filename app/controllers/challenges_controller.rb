@@ -1,8 +1,13 @@
 class ChallengesController < ApplicationController
 
     def create
-        render json: {challenge_id: params[:challenge_id]}
-        # Challenge.new(user_id: user_id, prompt_id: Prompt.all.sample.id)
+        # render json: {challenge_id: params[:challenge_id]}
+        challenge = Challenge.create(id: params[:challenge_id], user_id: params[:user_id], prompt_id: Prompt.all.sample.id)
+        if challenge.valid?
+            render json: challenge
+        else
+            render json: {errors: challenge.errors.full_messages}
+        end
     end
 
 
