@@ -1,10 +1,10 @@
 class ChallengesController < ApplicationController
 
     def create
-        # render json: {challenge_id: params[:challenge_id]}
-        challenge = Challenge.create(id: params[:challenge_id], user_id: params[:user_id], prompt_id: Prompt.all.sample.id)
+        selected_prompts = Prompt.all.select { |prompt| prompt.length === (params[:length]).to_i }
+        challenge = Challenge.create(id: params[:challenge_id], user_id: params[:user_id], prompt_id: selected_prompts.sample.id)
         if challenge.valid?
-            render json: challenge
+            render json: challenge, :include => [:prompt]
         else
             render json: {errors: challenge.errors.full_messages}
         end
