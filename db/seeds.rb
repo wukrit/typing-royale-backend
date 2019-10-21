@@ -7,4 +7,6 @@ Prompt.destroy_all
     Prompt.create(text: arr_of_words.join(' '), length: 50)
 end
 
-puts "lmao 69 420 ⌨️ ⌨️ ⌨️ ⌨️ ⌨️ ⌨️ 420 69 lmao"
+
+
+puts "lmao 69 420 ⌨️ ⌨️ ⌨️ ⌨️ ⌨️ ⌨️ 420 69 lmao" 
