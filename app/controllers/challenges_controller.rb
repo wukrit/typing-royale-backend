@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
 
     def create
         selected_prompts = Prompt.all.select { |prompt| prompt.length === (params[:length]).to_i }
-        challenge = Challenge.create(uuid: params[:challenge_uuid], user_id: params[:user_id], prompt_id: selected_prompts.sample.id)
+        challenge = Challenge.create(uuid: params[:challenge_uuid], prompt_id: selected_prompts.sample.id)
         if challenge.valid?
             render json: challenge, :include => [:prompt]
         else
@@ -14,7 +14,7 @@ class ChallengesController < ApplicationController
 private 
 
 def challenge_params
-    params.permit(:challenge_uuid, :length, :players, :user_id)
+    params.permit(:challenge_uuid, :length)
 end
 
 end
