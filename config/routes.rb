@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_challenges
   resources :challenges, only: [:show, :create]
   resources :prompts, only: [:index, :show]
   resources :users, only: [:show, :create]

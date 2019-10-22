@@ -10,19 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_151554) do
+ActiveRecord::Schema.define(version: 2019_10_22_135712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "challenges", id: :serial, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "prompt_id", default: 52, null: false
-    t.float "wpm"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "challenges", force: :cascade do |t|
+    t.bigint "prompt_id", null: false
+    t.string "uuid"
+    t.bigint "winner_id"
     t.index ["prompt_id"], name: "index_challenges_on_prompt_id"
-    t.index ["user_id"], name: "index_challenges_on_user_id"
   end
 
   create_table "prompts", force: :cascade do |t|
@@ -30,6 +27,16 @@ ActiveRecord::Schema.define(version: 2019_10_21_151554) do
     t.integer "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_challenges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "challenge_id", null: false
+    t.float "wpm"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["challenge_id"], name: "index_user_challenges_on_challenge_id"
+    t.index ["user_id"], name: "index_user_challenges_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,5 +49,6 @@ ActiveRecord::Schema.define(version: 2019_10_21_151554) do
   end
 
   add_foreign_key "challenges", "prompts"
-  add_foreign_key "challenges", "users"
+  add_foreign_key "user_challenges", "challenges"
+  add_foreign_key "user_challenges", "users"
 end
