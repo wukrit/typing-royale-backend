@@ -79,6 +79,9 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.web_socket_server_url = "wss://typing-royale-backend.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://typing-royale.herokuapp.com', 'https://typing-royale.firebaseapp.com']
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
