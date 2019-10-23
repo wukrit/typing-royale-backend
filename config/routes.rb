@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :prompts, only: [:index, :show]
   resources :users, only: [:show, :create]
   resources :login, only: [:create]
+  
   get 'challenges/:uuid', :to => 'challenges#show'
   patch 'challenges/:uuid/subscribe', :to => 'challenges#subscribe'
   patch 'challenges/:uuid/results', :to => 'challenges#results'
