@@ -1,10 +1,10 @@
 development:
-  adapter: async
+  adapter: postgresql
 
 test:
-  adapter: async
+  adapter: postgresql
 
 production:
-  adapter: redis
-  url: redis://redistogo:eecbdb3c7ac5d99062c427913e724b76@dory.redistogo.com:11649/
+  adapter: postgresql
+  # url: redis://redistogo:eecbdb3c7ac5d99062c427913e724b76@dory.redistogo.com:11649/
   channel_prefix: typing_royale_backend_production
