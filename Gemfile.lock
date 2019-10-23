@@ -185,7 +185,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rack-cors
   rails (~> 6.0.0)
-  redis
+  redis (~> 4.0)
   rest-client
   spring
   spring-watcher-listen (~> 2.0.0)
