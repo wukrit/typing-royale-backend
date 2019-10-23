@@ -2,9 +2,9 @@ development:
   adapter: async
 
 test:
-  adapter: test
+  adapter: async
 
 production:
   adapter: redis
-  url: redis://redistogo:5f1667d89dd8e4167fe34dbe3907bde9@dory.redistogo.com:11649/
+  url: redis://redistogo:eecbdb3c7ac5d99062c427913e724b76@dory.redistogo.com:11649/
   channel_prefix: typing_royale_backend_production
