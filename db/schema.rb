@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_135712) do
+ActiveRecord::Schema.define(version: 2019_10_22_204807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2019_10_22_135712) do
     t.bigint "prompt_id", null: false
     t.string "uuid"
     t.bigint "winner_id"
+    t.bigint "player_one"
+    t.bigint "player_two"
+    t.bigint "player_three"
+    t.bigint "player_four"
+    t.integer "player_one_progress"
+    t.integer "player_two_progress"
+    t.integer "player_three_progress"
+    t.integer "player_four_progress"
     t.index ["prompt_id"], name: "index_challenges_on_prompt_id"
   end
 
