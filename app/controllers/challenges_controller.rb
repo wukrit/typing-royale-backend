@@ -47,13 +47,18 @@ class ChallengesController < ApplicationController
     def results
         challenge = Challenge.find_by(uuid: result_params[:uuid])
         user = User.find(result_params[:user_id])
+        if !challenge.winner_id
+            challenge.winner_id = user.id
+            challenge.winner_name = user.username
+        end
         UserChallenge.create(user_id: user.id, challenge_id: challenge.id, wpm: result_params[:wpm].to_f)
         if challenge.player_one == user.username
-            challenge.update(player_one_wpm: result_params[:wpm].to_f)
+            challenge.player_one_wpm = result_params[:wpm].to_f
         elsif challenge.player_two === user.username
-            challenge.update(player_two_wpm: result_params[:wpm].to_f)
+            challenge.player_two_wpm =  result_params[:wpm].to_f
         end
 
+        challenge.save
         ChallengesChannel.broadcast_to challenge, challenge
     end
 
