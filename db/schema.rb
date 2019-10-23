@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_155349) do
+ActiveRecord::Schema.define(version: 2019_10_23_175852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 2019_10_23_155349) do
     t.integer "player_two_progress"
     t.integer "player_three_progress"
     t.integer "player_four_progress"
+    t.float "player_one_wpm"
+    t.float "player_two_wpm"
+    t.float "player_three_wpm"
+    t.float "player_four_wpm"
     t.index ["prompt_id"], name: "index_challenges_on_prompt_id"
   end
 

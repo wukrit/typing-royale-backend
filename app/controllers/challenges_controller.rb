@@ -44,18 +44,35 @@ class ChallengesController < ApplicationController
         ChallengesChannel.broadcast_to challenge, challenge
     end
 
-private 
+    def results
+        challenge = Challenge.find_by(uuid: result_params[:uuid])
+        user = User.find(result_params[:user_id])
+        UserChallenge.create(user_id: user.id, challenge_id: challenge.id, wpm: result_params[:wpm].to_f)
+        if challenge.player_one == user.username
+            challenge.update(player_one_wpm: result_params[:wpm].to_f)
+        elsif challenge.player_two === user.username
+            challenge.update(player_two_wpm: result_params[:wpm].to_f)
+        end
 
-def challenge_params
-    params.permit(:challenge_uuid, :length, :id, :user_id, :uuid, :progress)
-end
+        ChallengesChannel.broadcast_to challenge, challenge
+    end
 
-def subscribe_params
-    params.permit(:uuid, :user_id)
-end
+    private 
 
-def update_params
-    params.permit(:progress, :user_id, :id)
-end
+    def challenge_params
+        params.permit(:challenge_uuid, :length, :id, :user_id, :uuid, :progress)
+    end
+
+    def subscribe_params
+        params.permit(:uuid, :user_id)
+    end
+
+    def update_params
+        params.permit(:progress, :user_id, :id)
+    end
+
+    def result_params
+        params.permit(:wpm, :user_id, :uuid)
+    end
 
 end

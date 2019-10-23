@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :login, only: [:create]
   get 'challenges/:uuid', :to => 'challenges#show'
   patch 'challenges/:uuid/subscribe', :to => 'challenges#subscribe'
+  patch 'challenges/:uuid/results', :to => 'challenges#results'
 
   mount ActionCable.server => '/cable'
   
