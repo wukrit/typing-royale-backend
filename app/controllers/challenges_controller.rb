@@ -18,30 +18,30 @@ class ChallengesController < ApplicationController
 
     def update
         challenge = Challenge.find_by(uuid: update_params[:id])
+        user = User.find(update_params[:user_id])
         if update_params[:progress]
-            # byebug
-            if challenge.player_one == update_params[:user_id].to_i
-                # byebug
+            if challenge.player_one == user.username
                 challenge.update(player_one_progress: update_params[:progress])
-            elsif challenge.player_two == update_params[:user_id].to_i
+            elsif challenge.player_two == user.username
                 challenge.update(player_two_progress: update_params[:progress])
             end
         end
         ChallengesChannel.broadcast_to challenge, challenge
-        render json: {hi: true}
     end
 
     def subscribe
         challenge = Challenge.find_by(uuid: subscribe_params[:uuid])
         if subscribe_params[:user_id]
             if !challenge.player_one 
-                challenge.update(player_one: subscribe_params[:user_id])
+                player_one = User.find(subscribe_params[:user_id])
+                challenge.update(player_one: player_one.username)
             elsif !challenge.player_two
-                challenge.update(player_two: subscribe_params[:user_id])
+                player_two = User.find(subscribe_params[:user_id])
+                challenge.update(player_two: player_two.username)
             end
         end
+
         ChallengesChannel.broadcast_to challenge, challenge
-        render json: challenge
     end
 
 private 
