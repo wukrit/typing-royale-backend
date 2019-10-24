@@ -24,6 +24,17 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        user_id = params[:user_id])
+        if logged_in_user_id == user_id
+            user = User.find(params[:id])
+            user.update(bio: params[:bio])
+            render json: user
+        else
+            render json: { go_away: true }, status: :unauthorized
+        end
+    end
+
     private
     
     def user_params

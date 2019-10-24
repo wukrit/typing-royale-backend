@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :user_challenges, only: [:show, :create]
   resources :challenges, only: [:show, :create, :update]
   resources :prompts, only: [:index, :show]
-  resources :users, only: [:show, :create]
+  resources :users, only: [:show, :create, :update]
   resources :login, only: [:create]
   
   get 'challenges/:uuid', :to => 'challenges#show'
