@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        user_id = params[:user_id])
+        user_id = params[:user_id]
         if logged_in_user_id == user_id
             user = User.find(params[:id])
             user.update(bio: params[:bio])
