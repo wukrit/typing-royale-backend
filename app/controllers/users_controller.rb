@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     def update
         user_id = params[:user_id]
-        if logged_in_user_id == user_id
+        if logged_in_user_id == user_id.to_i
             user = User.find(params[:id])
             user.update(bio: params[:bio])
             render json: user
