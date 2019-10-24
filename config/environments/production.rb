@@ -80,7 +80,7 @@ Rails.application.configure do
   end
 
   config.web_socket_server_url = "wss://typing-royale-backend.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://typing-royale.firebaseapp.com', 'https://typing-royale.firebaseapp.com', 'https://tender-fermi-da6ef9.netlify.com/']
+  config.action_cable.allowed_request_origins = ['https://tender-fermi-da6ef9.netlify.com/', 'https://tender-fermi-da6ef9.netlify.com/']
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
