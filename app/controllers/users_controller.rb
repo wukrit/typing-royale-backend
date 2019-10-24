@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         if logged_in_user_id == user_id.to_i
             user = User.find(params[:id])
             user.update(bio: params[:bio])
-            render json: user
+            render json: {bio: user.bio}
         else
             render json: { go_away: true }, status: :unauthorized
         end
