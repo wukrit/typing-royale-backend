@@ -1,24 +1,27 @@
-# README
+# Typing-Royale
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is Typing-Royale?
+A retro themed typing game that allows players to compete head to head over the web.
 
-Things you may want to cover:
+## How does it work?
 
-* Ruby version
+### Back-End
+[Link to Back-End Repo](https://github.com/wukrit/typing-royale-frontend)
 
-* System dependencies
+Typing-Royale's API is built with Ruby on Rails, utilizing JWT and BCrypt for security, and PostgreSQL for its database. ActionCable is utilized to allow for real-time progress updates between players.
 
-* Configuration
+### Front-End
+Typing is built using React as its front-end framework.
 
-* Database creation
+React hooks are utilized in order to manage stateful logic and to create a cohesive UX.
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+    Clone repo and CD into the directory
+    bundle install
+    run rails db:create to create your postgres database
+    run rails db:migrate to bring up migrations
+    run rails db:seed to seed data for shops and items
+    run rails s to start the server
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Make sure to visit the repo for the frontend and follow those instructions as well.
