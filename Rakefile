@@ -4,3 +4,11 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+namespace :ping do
+  desc "keep heroku server up"
+
+  task :server => :environment do
+    puts "ping"
+  end
+end
