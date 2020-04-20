@@ -13,11 +13,13 @@ A retro themed typing game that allows players to compete head to head over the 
 ## How does it work?
 
 ### Back-End
-[Link to Back-End Repo](https://github.com/wukrit/typing-royale-frontend)
 
 Typing-Royale's API is built with Ruby on Rails, utilizing JWT and BCrypt for security, and PostgreSQL for its database. ActionCable is utilized to allow for real-time progress updates between players.
 
 ### Front-End
+
+[Link to Front-End Repo](https://github.com/wukrit/typing-royale-frontend)
+
 Typing is built using React as its front-end framework.
 
 React hooks are utilized in order to manage stateful logic and to create a cohesive UX.
